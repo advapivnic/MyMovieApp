@@ -39,6 +39,9 @@ public class CounterFragment extends Fragment {
                 if (activity instanceof AsyncTaskActivity) {
                      ((AsyncTaskActivity) activity).createBtnClicked();
                 }
+                if (activity instanceof ThreadsHandlerActivity) {
+                    ((ThreadsHandlerActivity) activity).createBtnClicked();
+                }
             }
         });
 
@@ -49,6 +52,9 @@ public class CounterFragment extends Fragment {
                 if (activity instanceof AsyncTaskActivity) {
                     ((AsyncTaskActivity) activity).startBtnClicked();
                 }
+                if (activity instanceof ThreadsHandlerActivity) {
+                    ((ThreadsHandlerActivity) activity).startBtnClicked();
+                }
             }
         });
 
@@ -58,6 +64,9 @@ public class CounterFragment extends Fragment {
             public void onClick(View v) {
                 if (activity instanceof AsyncTaskActivity) {
                     ((AsyncTaskActivity) activity).cancelBtnClicked();
+                }
+                if (activity instanceof ThreadsHandlerActivity) {
+                    ((ThreadsHandlerActivity) activity).cancelBtnClicked();
                 }
             }
         });
