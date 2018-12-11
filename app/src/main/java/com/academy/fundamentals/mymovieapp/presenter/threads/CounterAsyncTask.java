@@ -7,18 +7,16 @@ import android.support.v4.app.Fragment;
 
 public class CounterAsyncTask extends AsyncTask<Integer, Integer, Void> {
 
-    private Activity myActivity;
+    private IAsyncTaskEvents iAsyncTaskEvents;
 
-    public CounterAsyncTask(Activity myActivity) {
-        this.myActivity = myActivity;
+    public CounterAsyncTask(IAsyncTaskEvents iAsyncTaskEvents) {
+        this.iAsyncTaskEvents = iAsyncTaskEvents;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        if (myActivity instanceof AsyncTaskActivity) {
-            ((AsyncTaskActivity)myActivity).onPreExecute();
-        }
+        iAsyncTaskEvents.onPreExecute();
     }
 
 
@@ -41,16 +39,12 @@ public class CounterAsyncTask extends AsyncTask<Integer, Integer, Void> {
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
-        if (myActivity instanceof AsyncTaskActivity) {
-            ((AsyncTaskActivity)myActivity).onProgressUpdate(values[0]);
-        }
+        iAsyncTaskEvents.onProgressUpdate(values[0]);
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        if (myActivity instanceof AsyncTaskActivity) {
-            ((AsyncTaskActivity)myActivity).onPostExecute();
-        }
+        iAsyncTaskEvents.onPostExecute();
     }
 }

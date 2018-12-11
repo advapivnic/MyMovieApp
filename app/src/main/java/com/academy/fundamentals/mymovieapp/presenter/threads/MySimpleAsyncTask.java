@@ -9,13 +9,13 @@ import android.util.Log;
 public class MySimpleAsyncTask {
 
     private static final String TAG = "MySimpleAsyncTask";
-    private Activity myActivity;
+    private IAsyncTaskEvents iAsyncTaskEvents;
     boolean isCancelled = false;
     Thread thread;
     Handler handler = new Handler();
 
-    public MySimpleAsyncTask(Activity activity) {
-        this.myActivity = activity;
+    public MySimpleAsyncTask(IAsyncTaskEvents iAsyncTaskEvents) {
+        this.iAsyncTaskEvents = iAsyncTaskEvents;
 
     }
 
@@ -40,9 +40,7 @@ public class MySimpleAsyncTask {
     public void onPostExecute() {
         Log.d(TAG, "onPostExecute: " + Thread.currentThread().getId());
 
-        if (myActivity instanceof ThreadsHandlerActivity) {
-            ((ThreadsHandlerActivity)myActivity).onPostExecute();
-        }
+        iAsyncTaskEvents.onPostExecute();
     }
 
     public void execute(final Integer... startingInt) {
@@ -59,28 +57,26 @@ public class MySimpleAsyncTask {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            onPostExecute();
+                            if (!isCancelled) {
+                                onPostExecute();
+                            }
+
                         }
                     });
                 }
             }
         });
 
-        if (thread != null) {
-            thread.start();
-        }
+        thread.start();
     }
 
     public void onProgressUpdate(final Integer... values) {
-
 
         handler.post(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "onProgressUpdate: " + Thread.currentThread().getId());
-                if (myActivity instanceof ThreadsHandlerActivity) {
-                    ((ThreadsHandlerActivity)myActivity).onProgressUpdate(values[0]);
-                }
+                iAsyncTaskEvents.onProgressUpdate(values[0]);
             }
         });
 

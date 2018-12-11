@@ -70,4 +70,10 @@ public class ThreadsHandlerActivity extends AppCompatActivity implements ClickBu
             counterFragment.updateTextView(integer+"");
         }
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(COUNTER_STATE, currentNum);
+    }
 }

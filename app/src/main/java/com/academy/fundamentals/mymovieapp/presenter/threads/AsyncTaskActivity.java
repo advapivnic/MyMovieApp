@@ -1,5 +1,6 @@
 package com.academy.fundamentals.mymovieapp.presenter.threads;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -39,7 +40,9 @@ public class AsyncTaskActivity extends AppCompatActivity implements ClickButtons
     @Override
     public void startBtnClicked() {
         if (asynctask != null && !asynctask.isCancelled()) {
-            asynctask.execute(currentNum);
+            if (!(asynctask.getStatus() == AsyncTask.Status.RUNNING)) {
+                asynctask.execute(currentNum);
+            }
         }
     }
 
