@@ -72,11 +72,12 @@ public class MySimpleAsyncTask {
     }
 
     public void onProgressUpdate(final Integer... values) {
-        Log.d(TAG, "onProgressUpdate: " + Thread.currentThread().getId());
+
 
         handler.post(new Runnable() {
             @Override
             public void run() {
+                Log.d(TAG, "onProgressUpdate: " + Thread.currentThread().getId());
                 if (myActivity instanceof ThreadsHandlerActivity) {
                     ((ThreadsHandlerActivity)myActivity).onProgressUpdate(values[0]);
                 }
