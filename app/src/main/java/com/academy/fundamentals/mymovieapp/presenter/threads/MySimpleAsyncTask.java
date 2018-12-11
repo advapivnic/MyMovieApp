@@ -6,7 +6,8 @@ import android.os.Handler;
 public class MySimpleAsyncTask {
 
     boolean isCancelled = false;
-    Handler handler = new Handler();
+    Thread mThread;
+    Handler mHandler = new Handler();
 
 
 
@@ -24,19 +25,23 @@ public class MySimpleAsyncTask {
 
     public void execute() {
         onPreExecute();
-        handler.post(new Runnable() {
+        mThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                if (!isCancelled) {
+                if (!mThread.isInterrupted()) {
                     doInBackground();
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            onPostExecute();
+                        }
+                    });
                 }
-
             }
         });
 
+        mThread.start();
 
-
-        onPostExecute();
     }
 
     public void onProgressUpdate() {
