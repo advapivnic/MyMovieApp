@@ -5,4 +5,5 @@ public interface IAsyncTaskEvents {
     void onPreExecute();
     void onPostExecute();
     void onProgressUpdate(Integer integer);
+
 }

@@ -19,6 +19,7 @@ import com.academy.fundamentals.mymovieapp.list.OnMovieClickListener;
 import com.academy.fundamentals.mymovieapp.list.RecyclerViewAdapter;
 import com.academy.fundamentals.mymovieapp.model.MovieModel;
 import com.academy.fundamentals.mymovieapp.model.MoviesContent;
+import com.academy.fundamentals.mymovieapp.presenter.background.BGServiceActivity;
 import com.academy.fundamentals.mymovieapp.presenter.threads.AsyncTaskActivity;
 import com.academy.fundamentals.mymovieapp.presenter.threads.ThreadsHandlerActivity;
 
@@ -44,6 +45,9 @@ public class MoviesFragment extends Fragment  implements OnMovieClickListener {
 
         } else if (id == R.id.menu_threadhandler) {
             activityToLaunch = new Intent(getActivity(), ThreadsHandlerActivity.class);
+        }
+        else if (id == R.id.menu_service) {
+            activityToLaunch = new Intent(getActivity(), BGServiceActivity.class);
         }
         if (activityToLaunch != null) {
             getActivity().startActivity(activityToLaunch);

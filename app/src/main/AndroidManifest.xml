@@ -12,6 +12,7 @@
         <activity android:name=".presenter.ScreenSlidePagerActivity" />
         <activity android:name=".presenter.threads.AsyncTaskActivity" />
         <activity android:name=".presenter.threads.ThreadsHandlerActivity" />
+        <activity android:name=".presenter.background.BGServiceActivity" />
 
         <activity android:name=".presenter.MainActivity">
             <intent-filter>
@@ -20,6 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".presenter.background.HardJobService" />
+        <service android:name=".presenter.background.HardJobIntentService" />
     </application>
 
 </manifest>

@@ -1,7 +1,5 @@
 package com.academy.fundamentals.mymovieapp.presenter.threads;
 
-
-import android.app.Activity;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
@@ -32,7 +30,13 @@ public class MySimpleAsyncTask {
                 onProgressUpdate(i);
 
                 //never use it on ui thread
-                SystemClock.sleep(500);
+               // SystemClock.sleep(500);
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

@@ -20,10 +20,9 @@ public class CounterAsyncTask extends AsyncTask<Integer, Integer, Void> {
     }
 
 
-
     @Override
     protected Void doInBackground(Integer... startingInt) {
-        for (int i=startingInt[0]; i<11; i++) {
+        for (int i = startingInt[0]; i < 11; i++) {
             if (!isCancelled()) {
                 publishProgress(i);
                 try {
@@ -33,7 +32,7 @@ public class CounterAsyncTask extends AsyncTask<Integer, Integer, Void> {
                 }
             }
         }
-    return null;
+        return null;
     }
 
     @Override
